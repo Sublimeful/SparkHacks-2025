@@ -35,6 +35,20 @@
     align-items: center;
     column-gap: 10px;
 }
+
+.icon-button {
+    padding: 15px 0px;
+    border: none;
+    background: none;
+    text-align: left;
+}
+.icon-button:hover {
+    cursor: pointer;
+}
 .icons img{
     width: 100%;
+}
+
+.post-button {
+    width: 80px;
 }

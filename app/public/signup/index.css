@@ -1,0 +1,49 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    color: #09389D;
+}
+
+h2 {
+    text-align: center;
+    color: #526AE7;
+}
+
+#headers {
+    padding-top: 2.5%;
+}
+
+.signup_border {
+    border-radius: 10px;
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    display: flex;
+    justify-content: center;
+    background-color: red;
+}
+
+#signup_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.signup_input {
+    width: 25vw;
+}
+
+#submit {
+    width: 50%;
+    align-self: center;
+}
