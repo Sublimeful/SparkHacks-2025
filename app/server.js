@@ -80,7 +80,9 @@ async function init_db() {
 }
 
 try {
-  await init_db();
+  if (process.env.NODE_ENV === "production") {
+    await init_db();
+  }
 
   ViteExpress.listen(
     app,
