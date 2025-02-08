@@ -1,3 +1,7 @@
+button:hover{
+    cursor: pointer;
+}
+
 .tools {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -38,6 +42,7 @@
 }
 
 .header p {
+    font-family: Arial;
     font-size: 30px;
     flex-shrink: 0;
 }
@@ -62,19 +67,24 @@
     width: 100%;
 }
 
-
 .search-container {
     display: grid;
-    grid-template-columns: 30px 1fr;
+    grid-template-columns: 50px 1fr;
     column-gap: 0px;
     background-color: white;
-    height: 30px;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
     border-radius: 10px;
+}
+.search-container input {
+    background: none;
+    border: none;
 }
 
 .search-button {
-    border: none;
-    border-radius: 5px;
+    border-style: none;
+    background: none;
 }
 
 .search-button img {
@@ -101,8 +111,18 @@
 .post-button {
     position: fixed;
     right: 60px;
-    bottom: 50px;
+    bottom: 30px;
     font-size: 20px;
+    height: 50px;
+    width: 100px;
+    padding:5px;
+    border-style: hidden;
+    border-radius: 20px;
+    background-color: rgb(45, 119, 229);
+}
+.post-button img {
+    height: 30px;
+
 }
 
 .feed {
@@ -116,9 +136,12 @@
     display: grid;
     grid-template-rows: 100px 1fr 100px;
     background-color: white;
-    border-style: hidden;
+    border-style: solid;
+    border-color: rgb(184, 184, 184);
+    border-width: 2px;
     border-radius: 30px;
     width: 100%;
+    max-width: 2000px;
     height: 500px;
     padding: 30px;
 }
@@ -167,10 +190,11 @@
 .post-stats {
     display: flex;
     flex-direction: row;
-    column-gap: 2px;
+    column-gap: 0px;
     width: 300px;
     height: 100px;
 }
+
 .like-button,
 .comment-button,
 .share-button {
@@ -178,11 +202,18 @@
     grid-template-columns: 30px 1fr;
     column-gap: 0;
     background: none;
-    border-style: solid;
-    border-width: 2px;
-    max-height: 100px;
+    border: none;
+    max-height: 50px;
     flex: 1;
     align-items: center;
+    z-index: 100;
+    transition: background-color 200ms;
+}
+
+.like-button:hover,
+.comment-button:hover,
+.share-button:hover {
+    background-color: rgb(231, 231, 231);
 }
 
 .like-button,
