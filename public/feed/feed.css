@@ -13,6 +13,9 @@
     left:0;
     top:0;
     bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header {
@@ -21,4 +24,13 @@
     height: 90px;
     right: 0;
     top: 0;
+}
+
+.icons {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    align-items: center;
+}
+.icons img{
+    width: 30px;
 }
