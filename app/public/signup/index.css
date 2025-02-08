@@ -112,7 +112,8 @@ input {
     position: absolute;
     height: auto;
     opacity: 0.5;
-    bottom: 0px;
-    right: 0px;
-    width: 30vw;
+    bottom: 0;
+    right: 0;
+    width: 35vw;
+    top: 45vh;
 }
