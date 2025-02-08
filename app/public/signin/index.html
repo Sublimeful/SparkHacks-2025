@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <img src="../assets/user_signin.png" id="people">
+    <div id="headers">
+        <h1>Welcome Back</h1>
+        <h2>Sign in to your account</h2>
+    </div>
+    <div class="signup_border">
+        <form id="signup_form">
+            <div class="form_element">
+                <label>Email or Username</label>
+                <div class="input-container">
+                    <i class="fas fa-user icon"></i>
+                    <input class="signup_input" id="email_username" type="text" placeholder="johndoe@example.com or @johndoe">
+                </div>
+            </div>
+
+            <div class="form_element">
+                <label>Password</label>
+                <div class="input-container">
+                    <i class="fas fa-lock icon"></i>
+                    <input class="signup_input" id="password" type="password" placeholder="Enter your password">
+                </div>
+            </div>
+            <input id="submit" type="submit" value="Sign In">
+        </form>
+    </div>
+    <p>Don't have an account? <a href="#">Sign Up</a></p>
+</body>
+</html>
