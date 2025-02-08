@@ -6,44 +6,43 @@
 </head>
 <body>
     <img src="../assets/user_signup.png" id="people">
-    <div id="headers">
-        <h1>Create your account</h1>
-        <h2>Join to discover and support local businesses</h2>
+    <div class="heading">
+        <h1>Create Your Account</h1>
+        <p>Join to discover and support local businesses</p>
     </div>
-    <div class="signup_border">
-        <form id="signup_form">
-            <div class="form_element">
-                <label>Full Name</label>
-                <div class="input-container">
-                    <i class="fas fa-user icon"></i>
-                    <input class="signup_input" id="fullname" type="text" placeholder="John Doe">
-                </div>
-            </div>
+    <div class="form-card">
+        <label for="fname">Full Name</label>
+        <div class="input-container">
+            <i class="icon fa-regular fa-user filter-blue"></i>
+            <input type="text" id="fname" placeholder="John Doe">
+        </div>
 
-            <div class="form_element">
-                <label>Username</label>
-                <div class="input-container">
-                    <i class="fas fa-at icon"></i>
-                    <input class="signup_input" id="username" type="text" placeholder="@johndoe">
-                </div>
-            </div>
-            <div class="form_element">
-                <label>Email</label>
-                <div class="input-container">
-                    <i class="fas fa-envelope icon"></i>
-                    <input class="signup_input" id="email" type="email" placeholder="johndoe@example.com">
-                </div>
-            </div>
-            <div class="form_element">
-                <label>Password</label>
-                <div class="input-container">
-                    <i class="fas fa-lock icon"></i>
-                    <input class="signup_input" id="password" type="password" placeholder="Create a secure password">
-                </div>
-            </div>
-            <input id="submit" type="submit" value="Create Account">
-        </form>
+        <label for="password">Username</label>
+        <div class="input-container">
+            <i class="icon fa-solid fa-at filter-blue"></i>
+            <input type="text" id="username" placeholder="@johndoe">
+        </div>
+        <label for="email">Email</label>
+        <div class="input-container">
+            <i class="icon fa-regular fa-envelope filter-blue"></i>
+            <input type="email" id="email" placeholder="johndoe@example.com">
+        </div>
+        <label for="password">Password</label>
+        <div class="input-container">
+            <i class="icon fa-solid fa-lock filter-blue"></i>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <label for="confirm-password">Confirm Password</label>
+        <div class="input-container">
+            <i class="icon fa-solid fa-lock filter-blue"></i>
+            <input type="password" id="confirm-password" placeholder="Confirm your password">
+        </div>
+        <div class="buttons">
+            <button class="sign-up">
+                <p>Create Account</p>
+            </button>
+        </div>
     </div>
-    <p>Already have an account? <a href="#">Sign In</a></p>
+    <p style="color: #09389D">Already have an account? <a href="#" style="text-decoration: none; color: #0C56F6">Sign In</a></p>
 </body>
 </html>
