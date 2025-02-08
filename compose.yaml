@@ -10,6 +10,20 @@ services:
     restart: unless-stopped
     depends_on:
       - sparkhacks
+  db:
+    image: postgres
+    container_name: sparkhacks_postgres
+    volumes:
+      - ./db:/data/postgres
+    ports:
+      - 5433:5432
+    restart: always
+    shm_size: 128mb
+    environment:
+      PGDATA: /data/postgres
+      POSTGRES_PASSWORD: sparkhacks
+    depends_on:
+      - sparkhacks
   sparkhacks:
     image: sparkhacks
     container_name: sparkhacks
