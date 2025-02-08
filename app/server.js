@@ -1,10 +1,13 @@
 import express from "express";
+import api_routes from "./api_routes.js";
 import ViteExpress from "vite-express";
 import "dotenv/config";
 import { perform_action } from "./db.js";
 
 const app = express();
 
+app.use(express.json());
+app.use('/api', api_routes);
 app.use(express.static("public"));
 
 async function init_db() {
