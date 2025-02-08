@@ -1,7 +1,7 @@
 .tools {
     display: grid;
     grid-template-columns: 300px 1fr;
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -9,7 +9,6 @@
 
 .sidebar {
     background-color: white;
-    position: relative;
     left:0;
     top:0;
     bottom: 0;
@@ -25,7 +24,6 @@
 
 .header {
     background-color: white;
-    position: relative;
     height: 90px;
     width: 100%;
     right: 0;
@@ -64,10 +62,6 @@
     width: 100%;
 }
 
-.post-button {
-    width: 80px;
-    left: 60px;
-}
 
 .search-container {
     display: grid;
@@ -102,6 +96,13 @@
     border-radius: 5px;
     border-style: hidden;
     flex: 1
+}
+
+.post-button {
+    position: fixed;
+    right: 60px;
+    bottom: 50px;
+    font-size: 20px;
 }
 
 .feed {
