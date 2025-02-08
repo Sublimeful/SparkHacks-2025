@@ -77,3 +77,13 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+#people {
+    position: absolute;
+    display: flex;
+    height: auto;
+    opacity: 0.5;
+    bottom: 0px;
+    right: 0px;
+    width: 30vw;
+}
