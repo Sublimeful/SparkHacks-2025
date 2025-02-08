@@ -16,6 +16,9 @@
     display: flex;
     flex-direction: column;
     align-items: left;
+    row-gap: 20px;
+    padding-top: 30px;
+    padding-left: 45px;
 }
 
 .header {
@@ -28,9 +31,10 @@
 
 .icons {
     display: grid;
-    grid-template-columns: 30px 1fr;
+    grid-template-columns: 40px 1fr;
     align-items: center;
+    column-gap: 10px;
 }
 .icons img{
-    width: 30px;
+    width: 100%;
 }
