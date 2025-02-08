@@ -1,0 +1,8 @@
+.main-feed {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    background-color: red;
+}
