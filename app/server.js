@@ -1,14 +1,25 @@
 import express from "express";
+import api_routes from "./api_routes.js";
 import ViteExpress from "vite-express";
 import "dotenv/config";
 import { perform_action } from "./db.js";
 
 const app = express();
 
+app.use(express.json());
+app.use('/api', api_routes);
 app.use(express.static("public"));
 
-function init_db() {
-  perform_action(`
+async function init_db() {
+  await perform_action(`
+    CREATE TABLE IF NOT EXISTS Attachment (
+      id SERIAL PRIMARY KEY,
+      file_path TEXT,
+      created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+    );
+  `)
+
+  await perform_action(`
     CREATE TABLE IF NOT EXISTS Account (
       id SERIAL PRIMARY KEY,
       email TEXT UNIQUE NOT NULL,
@@ -22,7 +33,7 @@ function init_db() {
     );
   `);
 
-  perform_action(`
+  await perform_action(`
     CREATE TABLE IF NOT EXISTS Business (
       id SERIAL PRIMARY KEY,
       account_id INTEGER UNIQUE NOT NULL,
@@ -36,7 +47,7 @@ function init_db() {
 
   `);
 
-  perform_action(`
+  await perform_action(`
     CREATE TABLE IF NOT EXISTS Support (
       id SERIAL PRIMARY KEY,
       account_id INTEGER REFERENCES Account(id) NOT NULL,
@@ -45,7 +56,7 @@ function init_db() {
     );
   `);
 
-  perform_action(`
+  await perform_action(`
     CREATE TABLE IF NOT EXISTS Post (
       id SERIAL PRIMARY KEY,
       contents TEXT NOT NULL,
@@ -53,17 +64,9 @@ function init_db() {
       created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
   `);
-
-  perform_action(`
-    CREATE TABLE IF NOT EXISTS Attachment (
-      id SERIAL PRIMARY KEY,
-      file_path TEXT,
-      created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-    );
-  `)
 }
 
-init_db();
+await init_db();
 
 ViteExpress.listen(
   app,

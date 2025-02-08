@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres
-    container_name: sparkhacks_postgres
+    container_name: sparkhacks_db
     volumes:
       - ./db:/data/postgres
     ports:
