@@ -161,6 +161,8 @@ textarea {
     align-items: center;
     gap: 10px;
     width: 7vw;
+    height: 6vh;
+    filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.3));
 }
 
 .next-btn:hover {

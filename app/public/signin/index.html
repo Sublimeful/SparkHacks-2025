@@ -6,30 +6,30 @@
 </head>
 <body>
     <img src="../assets/user_signin.png" id="people">
-    <div id="headers">
+    <div class="heading">
         <h1>Welcome Back</h1>
-        <h2>Sign in to your account</h2>
+        <p>Sign in to your account</p>
     </div>
-    <div class="signup_border">
-        <form id="signup_form">
-            <div class="form_element">
-                <label>Email or Username</label>
-                <div class="input-container">
-                    <i class="fas fa-user icon"></i>
-                    <input class="signup_input" id="email_username" type="text" placeholder="johndoe@example.com or @johndoe">
-                </div>
-            </div>
+    <div class="form-card">  
+        <h2>Account Setup</h2>
 
-            <div class="form_element">
-                <label>Password</label>
-                <div class="input-container">
-                    <i class="fas fa-lock icon"></i>
-                    <input class="signup_input" id="password" type="password" placeholder="Enter your password">
-                </div>
-            </div>
-            <input id="submit" type="submit" value="Sign In">
-        </form>
+        <label for="username">Email or Username</label>
+        <div class="input-container">
+            <i class="icon fa-solid fa-at filter-blue"></i>
+            <input type="text" id="username" placeholder="johndoe@example.com or @johndoe">
+        </div>
+
+        <label for="password">Password</label>
+        <div class="input-container">
+            <i class="icon fa-solid fa-lock filter-blue"></i>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <div class="buttons">
+            <button class="sign-in">
+                <p>Sign In</p>
+            </button>
+        </div>
     </div>
-    <p>Don't have an account? <a href="#">Sign Up</a></p>
+    <p style="color: #09389D">Already have an account? <a href="#" style="text-decoration: none; color: #0C56F6">Sign In</a></p>
 </body>
 </html>
