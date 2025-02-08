@@ -1,4 +1,4 @@
-.main-feed {
+.tools {
     display: grid;
     grid-template-columns: 300px 1fr;
     position: absolute;
@@ -8,7 +8,7 @@
 }
 
 .sidebar {
-    background-color: red;
+    background-color: white;
     position: relative;
     left:0;
     top:0;
@@ -19,14 +19,28 @@
     row-gap: 20px;
     padding-top: 30px;
     padding-left: 45px;
+    border-right-width: 1px;
+    border-right-style: solid;
 }
 
 .header {
-    background-color: green;
+    background-color: white;
     position: relative;
     height: 90px;
     right: 0;
     top: 0;
+    display: grid;
+    grid-template-columns: 200px 1fr 300px;
+    column-gap: 20px;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.header p {
+    font-size: 30px;
+    flex-shrink: 0;
 }
 
 .icons {
@@ -51,4 +65,40 @@
 
 .post-button {
     width: 80px;
+    left: 60px;
+}
+
+.search-container {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    column-gap: 0px;
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.search-button {
+    border: none;
+    border-radius: 5px;
+}
+
+.search-button img {
+    width: 20px;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    flex-shrink: 0;
+    margin-left: 40px;
+}
+
+.login-btn,
+.signup-btn {
+    height: 50px;
+    width: 90px;
+    font-size: 20px;
+    border-radius: 5px;
+    border-style: hidden;
 }
