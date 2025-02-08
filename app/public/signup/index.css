@@ -5,6 +5,8 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #B2CEF2;
+    height: 100vh;
 }
 
 h1 {
@@ -25,31 +27,53 @@ h2 {
     border-radius: 10px;
     background: #ffffff;
     width: 25vw;
-    height: 50%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
+    height: auto;
+    padding: 2.5%;
+    margin: 2.5% auto;
     display: flex;
     justify-content: center;
-    background-color: red;
+    background-color: #F4F4F4;
 }
 
 #signup_form {
     display: flex;
     flex-direction: column;
-    justify-content: center space-evenly;
-    
+    justify-content: space-evenly;
     row-gap: 10px;
+    width: 100%;
 }
 
 .signup_input {
-    width: 17.5vw;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
 }
 
 #submit {
     width: 50%;
     align-self: center;
+    padding: 10px;
+    background-color: #526AE7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .form_element {
     display: grid;
+    padding-bottom: 15px;
+}
+
+p {
+    text-align: center;
+}
+
+a {
+    color: #526AE7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
