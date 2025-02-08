@@ -166,7 +166,7 @@ button:hover{
 
 .poster-info {
     display: grid;
-    grid-template-columns: 30px 1fr 50px;
+    grid-template-columns: 30px 3fr 1fr;
     column-gap: 10px;
     width: 100%;
     align-items: center;
@@ -185,4 +185,36 @@ button:hover{
 
 .poster-names p {
     margin: 0;
+}
+
+.post-content {
+    display: grid;
+    grid-template-rows: 20px 1fr 20px 3fr;
+    row-gap: 10px;
+    height: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.collage-containers {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    width: 100%
+}
+
+.collage-pictures {
+    border-style: solid;
+    border-width: 2px;
+    max-height: 90px;
+    flex: 1;
+}
+
+.trailer-video {
+    border-style: solid;
+    border-width: 2px;
+    max-height: 90px;
+    flex: 1;
 }
