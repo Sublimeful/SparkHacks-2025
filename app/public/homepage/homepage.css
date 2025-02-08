@@ -139,3 +139,61 @@ body, html {
 .sign-in:hover {
     text-decoration: underline;
 }
+
+.why-choose {
+    text-align: center;
+    padding: 5vw;
+}
+
+.why-choose h2 {
+    color: #1E3CD6;
+}
+
+.choose-cards {
+    display: flex;
+    gap: 30px;
+}
+
+.choose-card:hover {
+    scale: 1.025;
+}
+
+.choose-card {
+    background-color: #F4F4F4;
+    border-radius: 15px;
+    height: 18vh;
+    width: 15vw;
+    padding: 20px;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s;
+}
+
+.choose-card h3 {
+    color: #1E3CD6;
+}
+
+.choose-card p {
+    color: #437FEE;
+}
+
+#megaphone {
+    z-index: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 80vh;
+    opacity: 0.5;
+    aspect-ratio: 1/1;
+    width: 25vw;
+}
+
+#store {
+    z-index: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 10vh;
+    opacity: 0.5;
+    aspect-ratio: 1/1;
+    width: 30vw;
+}
