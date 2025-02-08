@@ -131,7 +131,7 @@
             attachmentIds = await Promise.all(files.map(async (file) => {
                 const formData = new FormData();
                 formData.append('file', file);
-                const response = await fetch('/attachment/upload', {
+                const response = await fetch('/api/attachment/upload', {
                     method: 'POST',
                     body: formData
                 });
@@ -165,7 +165,7 @@
             };
 
             try {
-                const response = await fetch('/account/business/sign-up', {
+                const response = await fetch('/api/account/business/sign-up', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
