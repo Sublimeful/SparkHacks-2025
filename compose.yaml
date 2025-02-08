@@ -1,15 +1,4 @@
 services:
-  nginx:
-    image: nginx
-    container_name: sparkhacks_nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
-    ports:
-      - 80:80
-      - 443:443
-    restart: unless-stopped
-    depends_on:
-      - sparkhacks
   db:
     image: postgres
     container_name: sparkhacks_postgres
@@ -22,10 +11,27 @@ services:
     environment:
       PGDATA: /data/postgres
       POSTGRES_PASSWORD: sparkhacks
-    depends_on:
-      - sparkhacks
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 1s
+      retries: 20
   sparkhacks:
     image: sparkhacks
     container_name: sparkhacks
     build: ./app
     restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+  nginx:
+    image: nginx
+    container_name: sparkhacks_nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    depends_on:
+      - sparkhacks

@@ -84,7 +84,7 @@ a:hover {
     height: auto;
     opacity: 0.5;
     bottom: 0px;
-    right: 0px;
+    left: 0px;
     width: 30vw;
 }
 
@@ -99,4 +99,10 @@ a:hover {
     top: 50%;
     transform: translateY(-50%);
     color: #526AE7;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 5px;
 }
