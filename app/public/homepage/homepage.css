@@ -8,13 +8,19 @@ body, html {
     align-items: center;
 }
 
+/* colors */
+.filter-blue {
+    filter: invert(16%) sepia(93%) saturate(5025%) hue-rotate(227deg) brightness(100%) contrast(113%);
+}
+
+.filter-white {
+    filter: invert(97%) sepia(46%) saturate(3%) hue-rotate(215deg) brightness(119%) contrast(100%);
+}
+/* colors */
+
 .icon img {
     height: auto;
     width: 100%;
-}
-
-.filter-blue {
-    filter: invert(16%) sepia(93%) saturate(5025%) hue-rotate(227deg) brightness(100%) contrast(113%);
 }
 
 .icon {
@@ -28,7 +34,25 @@ body, html {
 }
 
 .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     text-align: center;
+    width: 50vw;
+    height: 40vh;
+}
+
+.heading h1 {
+    color: #09389D;
+    font-size: 4vw;
+    margin-bottom: 10px;
+}
+
+.heading p {
+    color: #526AE7;
+    margin-top: 0;
+    width: 60%;
+    align-self: center;
 }
 
 .options {
@@ -37,7 +61,12 @@ body, html {
     gap: 40px;
 }
 
+.card:hover {
+    transform: translateY(-10px);
+}
+
 .card {
+    position: relative;
     width: 25vw;
     height: 35vh;
     background-color: #F4F4F4;
@@ -46,4 +75,67 @@ body, html {
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 20px;
+    transition: all 0.5s;
+}
+
+#customer-card {
+    width: 55%;
+}
+
+.proceed {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
+
+.card h3 {
+    color: #1E3CD6;
+}
+
+.card p {
+    color: #4156C5;
+}
+
+.next img {
+    width: 20px;
+    height: auto;
+}
+
+.next p {
+    font-size: small;
+    color: white;
+}
+
+.next:hover {
+    scale: 1.025;
+}
+
+.next {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    border-radius: 100px;
+    cursor: pointer;
+    width: 40%;
+    border: none;
+    background-color: #2D77E5;
+    color: white;
+    font-weight: 550;
+    filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.5));
+    transition: all 0.3s;
+}
+
+.sign-in {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #3D61BB;
+    font-weight: 550;
+}
+
+.sign-in:hover {
+    text-decoration: underline;
 }
