@@ -1,0 +1,49 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #B2CEF2;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon img {
+    height: auto;
+    width: 100%;
+}
+
+.filter-blue {
+    filter: invert(16%) sepia(93%) saturate(5025%) hue-rotate(227deg) brightness(100%) contrast(113%);
+}
+
+.icon {
+    background-color: #D4E1F1;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6%;
+    border-radius: 15%;
+}
+
+.heading {
+    text-align: center;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.card {
+    width: 25vw;
+    height: 35vh;
+    background-color: #F4F4F4;
+    border-radius: 1vw;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+}
