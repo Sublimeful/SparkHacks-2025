@@ -3,8 +3,8 @@ import ViteExpress from "vite-express";
 import "dotenv/config";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 8000;
 
 app.use(express.static("public"));
 
-ViteExpress.listen(app, port, () => console.log("Server is listening..."));
+ViteExpress.listen(app, port, () => console.log(`Server is listening... on port ${port}`));
