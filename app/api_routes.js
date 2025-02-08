@@ -125,12 +125,11 @@ router.post("/account/business/sign-up", async (req, res) => {
     await client.query(
       `
       INSERT INTO Business (account_id, location, category, phone_number, description, collage_attachments)
-      VALUES ($1, POINT($2, $3), $4, $5, $6, $7);
+      VALUES ($1, $2, $3, $4, $5, $6);
       `,
       [
         accountId,
-        location.x, // x-coordinate for the POINT
-        location.y, // y-coordinate for the POINT
+        location,
         category,
         phone_number,
         description,
