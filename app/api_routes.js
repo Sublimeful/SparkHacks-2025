@@ -4,52 +4,61 @@ import multer from "multer";
 import { Router } from "express";
 const router = Router();
 
-
 // Configure Multer to store files in "uploads/" directory
-const storage = multer.diskStorage({
-  destination: "uploads/", // Ensure this folder exists
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      const dir = "uploads/";
+      fs.mkdirSync(dir, { recursive: true }); // Ensure directory exists
+      cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+      cb(null, `${Date.now()}-${file.originalname}`);
+    },
+  }),
 });
-const upload = multer({ storage });
 
-router.post("/attachment/upload", upload.single("file"), async (req, res) => {
-  let client;
-  const file = req.file;
+router.post("/attachment/upload", (req, res) => {
+  upload.single("file")(req, res, async function (err) {
+    // Error handling
+    if (err) {
+      if (err instanceof multer.MulterError) {
+        return res.status(400).json({ error: "File error: " + err.message });
+      }
+      return res.status(500).json({ error: "Unexpected error" });
+    }
 
-  if (!file) {
-    return res.status(400).json({ error: "No file uploaded" });
-  }
+    // No file check
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
 
-  try {
-    client = await pool.connect();
+    let client;
+    try {
+      client = await pool.connect();
+      const result = await client.query(
+        `INSERT INTO Attachment (file_path)
+         VALUES ($1)
+         RETURNING id, file_path;`,
+        [`/uploads/${req.file.filename}`] // Use URL-friendly path
+      );
 
-    // Insert file path into the Attachment table
-    const result = await client.query(
-      `
-      INSERT INTO Attachment (file_path)
-      VALUES ($1)
-      RETURNING id, file_path;
-      `,
-      [file.path]
-    );
-
-    res.status(201).json({
-      message: "File uploaded successfully",
-      attachmentId: result.rows[0].id,
-      filePath: result.rows[0].file_path,
-    });
-  } catch (error) {
-    console.error("Error uploading attachment:", error);
-    res.status(500).send("Server error");
-  } finally {
-    if (client) client.release();
-  }
+      res.status(201).json({
+        message: "File uploaded successfully",
+        attachmentId: result.rows[0].id,
+        filePath: result.rows[0].file_path,
+      });
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({ error: "Database operation failed" });
+    } finally {
+      if (client) client.release();
+    }
+  });
 });
 
 router.post("/account/user/sign-up", async (req, res) => {
-  const { email, name, username, password } = res.json;
+  const { email, name, username, password } = res.body;
 
   let client;
 
@@ -143,7 +152,7 @@ router.post("/account/business/sign-up", async (req, res) => {
   }
 });
 
-router.post("/account/sign-in", async(req, res) => {
+router.post("/account/sign-in", async (req, res) => {
   const { email, password } = req.body;
 
   let client;
@@ -154,14 +163,14 @@ router.post("/account/sign-in", async(req, res) => {
     // Retrieve the user by username and password (since no hashing is used)
     const result = await client.query(
       "SELECT id FROM Account WHERE email = $1 AND password = $2;",
-      [email, password]
+      [email, password],
     );
 
     if (result.rows.length === 0) {
       return res.status(401).json({ error: "Invalid username or password" });
     }
 
-    const user = result.rows[0]
+    const user = result.rows[0];
 
     res.status(200).json({ message: "Login successful", user });
   } catch (error) {
@@ -187,10 +196,13 @@ router.post("/create-post", async (req, res) => {
       VALUES ($1, $2)
       RETURNING id;
       `,
-      [contents, attachments || []] // Default to empty array if attachments are not provided
+      [contents, attachments || []], // Default to empty array if attachments are not provided
     );
 
-    res.status(201).json({ message: "Post created successfully", postId: result.rows[0].id });
+    res.status(201).json({
+      message: "Post created successfully",
+      postId: result.rows[0].id,
+    });
   } catch (error) {
     console.error("Error creating post:", error);
     res.status(500).send("Server error");
@@ -211,7 +223,7 @@ router.get("/post/:id", async (req, res) => {
       `
       SELECT * FROM Post WHERE id = $1;
       `,
-      [id]
+      [id],
     );
 
     if (result.rows.length === 0) {
@@ -241,15 +253,20 @@ router.post("/support-business", async (req, res) => {
       VALUES ($1, $2)
       RETURNING id;
       `,
-      [account_id, business_id]
+      [account_id, business_id],
     );
 
-    res.status(201).json({ message: "Business supported successfully", supportId: result.rows[0].id });
+    res.status(201).json({
+      message: "Business supported successfully",
+      supportId: result.rows[0].id,
+    });
   } catch (error) {
     console.error("Error supporting business:", error);
 
     if (error.code === "23503") {
-      return res.status(400).json({ error: "Invalid account_id or business_id" });
+      return res.status(400).json({
+        error: "Invalid account_id or business_id",
+      });
     }
 
     res.status(500).send("Server error");

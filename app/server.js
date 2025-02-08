@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 app.use("/api", api_routes);
 app.use(express.static("public"));
+app.use("/uploads", express.static("uploads"));
 
 async function init_db() {
   let client;
@@ -29,7 +30,7 @@ async function init_db() {
         id SERIAL PRIMARY KEY,
         email TEXT UNIQUE NOT NULL,
         name TEXT NOT NULL,
-        username TEXT NOT NULL,
+        username TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL,
         created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
         CONSTRAINT valid_email CHECK (email ~* '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$'),
