@@ -1,0 +1,135 @@
+button:hover{
+    cursor: pointer;
+}
+
+.tools {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.sidebar {
+    background-color: white;
+    left:0;
+    top:0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    row-gap: 20px;
+    padding-top: 30px;
+    padding-left: 45px;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+.header {
+    background-color: white;
+    height: 90px;
+    width: 100%;
+    right: 0;
+    top: 0;
+    display: grid;
+    grid-template-columns: 200px 1fr 300px;
+    column-gap: 20px;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.header p {
+    font-family: Arial;
+    font-size: 30px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.icons {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.icon-button {
+    padding: 15px 0px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-weight: bold;
+    font-size: 24px;
+}
+.icon-button:hover {
+    cursor: pointer;
+}
+.icons img{
+    width: 100%;
+}
+
+.search-container {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    column-gap: 0px;
+    background-color: white;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+}
+.search-container input {
+    background: none;
+    border: none;
+}
+
+.search-button {
+    border-style: none;
+    background: none;
+}
+
+.search-button img {
+    width: 20px;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    flex-shrink: 0;
+    padding: 15px;
+}
+
+.login-btn,
+.signup-btn {
+    height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    border-style: hidden;
+    flex: 1;
+    font-weight: bold;
+}
+
+.signup-btn {
+    background-color: rgb(45, 119, 229);
+    color: white;
+}
+
+.post-button {
+    position: fixed;
+    right: 60px;
+    bottom: 30px;
+    font-size: 20px;
+    height: 50px;
+    width: 100px;
+    padding:5px;
+    border-style: hidden;
+    border-radius: 20px;
+    background-color: rgb(45, 119, 229);
+}
+.post-button img {
+    height: 30px;
+
+}
