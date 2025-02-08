@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "sparkhacks-2025",
+  "name": "sparkhacks",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
