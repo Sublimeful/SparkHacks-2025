@@ -43,7 +43,7 @@ async function init_db() {
       CREATE TABLE IF NOT EXISTS Business (
         id SERIAL PRIMARY KEY,
         account_id INTEGER UNIQUE NOT NULL,
-        location POINT,
+        location TEXT,
         category TEXT NOT NULL,
         phone_number TEXT NOT NULL,
         description TEXT,
