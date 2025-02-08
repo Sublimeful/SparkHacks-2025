@@ -14,11 +14,11 @@ services:
     image: postgres
     container_name: sparkhacks_postgres
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./db:/data/postgres
     restart: always
     shm_size: 128mb
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
+      PGDATA: /data/postgres
       POSTGRES_PASSWORD: sparkhacks
     depends_on:
       - sparkhacks
