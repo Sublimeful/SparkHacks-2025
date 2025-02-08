@@ -1,0 +1,17 @@
+services:
+  nginx:
+    image: nginx
+    container_name: unravel_nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    depends_on:
+      - sparkhacks
+  sparkhacks:
+    image: sparkhacks
+    container_name: sparkhacks
+    build: ./app
+    restart: unless-stopped
