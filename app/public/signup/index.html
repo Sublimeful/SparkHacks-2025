@@ -2,6 +2,7 @@
 <html>
 <head> 
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <img src="../assets/user_signup.png" id="people">
@@ -13,20 +14,32 @@
         <form id="signup_form">
             <div class="form_element">
                 <label>Full Name</label>
-                <input class="signup_input" id="fullname" type="text" placeholder="John Doe">
+                <div class="input-container">
+                    <i class="fas fa-user icon"></i>
+                    <input class="signup_input" id="fullname" type="text" placeholder="John Doe">
+                </div>
             </div>
 
             <div class="form_element">
                 <label>Username</label>
-                <input class="signup_input" id="username" type="text" placeholder="@johndoe">
+                <div class="input-container">
+                    <i class="fas fa-at icon"></i>
+                    <input class="signup_input" id="username" type="text" placeholder="@johndoe">
+                </div>
             </div>
             <div class="form_element">
                 <label>Email</label>
-                <input class="signup_input" id="email" type="email" placeholder="johndoe@example.com">
+                <div class="input-container">
+                    <i class="fas fa-envelope icon"></i>
+                    <input class="signup_input" id="email" type="email" placeholder="johndoe@example.com">
+                </div>
             </div>
             <div class="form_element">
                 <label>Password</label>
-                <input class="signup_input" id="password" type="password" placeholder="Create a secure password">
+                <div class="input-container">
+                    <i class="fas fa-lock icon"></i>
+                    <input class="signup_input" id="password" type="password" placeholder="Create a secure password">
+                </div>
             </div>
             <input id="submit" type="submit" value="Create Account">
         </form>
