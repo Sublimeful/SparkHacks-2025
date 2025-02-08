@@ -40,7 +40,7 @@ router.post("/attachment/upload", (req, res) => {
         `INSERT INTO Attachment (file_path)
          VALUES ($1)
          RETURNING id, file_path;`,
-        [`/uploads/${req.file.filename}`] // Use URL-friendly path
+        [`/uploads/${req.file.filename}`], // Use URL-friendly path
       );
 
       res.status(201).json({
@@ -58,7 +58,7 @@ router.post("/attachment/upload", (req, res) => {
 });
 
 router.post("/account/user/sign-up", async (req, res) => {
-  const { email, name, username, password } = res.body;
+  const { email, name, username, password } = req.body;
 
   let client;
 
@@ -99,7 +99,7 @@ router.post("/account/business/sign-up", async (req, res) => {
     phone_number,
     description,
     collage_attachments,
-  } = res.json;
+  } = req.body;
 
   let client;
 

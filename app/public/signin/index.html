@@ -1,34 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head> 
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <img src="../assets/user_signin.png" id="people">
+  <head>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <img src="../assets/user_signin.png" id="people" />
     <div class="heading">
-        <h1>Welcome Back</h1>
-        <p>Sign in to your account</p>
+      <h1>Welcome Back</h1>
+      <p>Sign in to your account</p>
     </div>
-    <div class="form-card">  
-        <h2>Account Setup</h2>
+    <div class="form-card">
+      <h2>Account Setup</h2>
 
-        <label for="username">Email or Username</label>
+      <form id="signin-form">
+        <!-- Email Input -->
+        <label for="email">Email</label>
         <div class="input-container">
-            <i class="icon fa-solid fa-at filter-blue"></i>
-            <input type="text" id="username" placeholder="johndoe@example.com or @johndoe">
+          <i class="icon fa-solid fa-envelope filter-blue"></i>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="johndoe@example.com"
+            required
+          />
         </div>
 
+        <!-- Password Input -->
         <label for="password">Password</label>
         <div class="input-container">
-            <i class="icon fa-solid fa-lock filter-blue"></i>
-            <input type="password" id="password" placeholder="Enter your password">
+          <i class="icon fa-solid fa-lock filter-blue"></i>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password (min. 8 characters)"
+            minlength="8"
+            required
+          />
         </div>
+
         <div class="buttons">
-            <button class="sign-in">
-                <p>Sign In</p>
-            </button>
+          <button type="submit" class="sign-in">
+            <p>Sign In</p>
+          </button>
         </div>
+      </form>
     </div>
-</body>
+  </body>
 </html>
