@@ -148,38 +148,6 @@ button:hover{
     padding-top: 20vh;
 }
 
-.notif {
-    width: 70vw;
-    height: 20vh;
-    background-color: white;
-    border-radius: 10px;
-    display: flex;
-    gap: 15px;
-}
-
-.notif img {
-    border-radius: 50%;
-    height: 8vh;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-
-.notif-details h2 {
-    font-size: 3vh;
-    margin-bottom: 0;
-}
-
-.notif-details h3 {
-    font-weight: lighter;
-    font-size: 2vh;
-    margin-top: 0;
-    color: #464646;
-}
-
-.notif-details p {
-    font-size: 3vh;
-}
-
 .post {
     display: grid;
     grid-template-rows: 100px 1fr 100px;
