@@ -58,7 +58,7 @@ router.post("/attachment/upload", (req, res) => {
 });
 
 router.post("/account/user/sign-up", async (req, res) => {
-  const { email, name, username, password } = res.body;
+  const { email, name, username, password } = res.json;
 
   let client;
 
