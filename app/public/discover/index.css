@@ -9,6 +9,7 @@ button:hover{
     width: 100%;
     height: 100%;
     margin: 0;
+    z-index: 200;
 }
 
 .sidebar {
@@ -121,15 +122,38 @@ button:hover{
     position: fixed;
     right: 60px;
     bottom: 30px;
-    font-size: 20px;
+    font-size: 40px;
+    color:white;
     height: 50px;
     width: 100px;
-    padding:5px;
     border-style: hidden;
     border-radius: 20px;
     background-color: rgb(45, 119, 229);
 }
-.post-button img {
-    height: 30px;
 
+.page-header {
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.feed {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    padding: 150px 40px 10px 400px;
+}
+
+.post {
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    background-color: white;
+    border-style: solid;
+    border-color: rgb(184, 184, 184);
+    border-width: 2px;
+    border-radius: 30px;
+    max-width: 500px;
+    height: 500px;
+    padding: 30px;
 }
