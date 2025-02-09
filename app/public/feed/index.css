@@ -237,3 +237,26 @@ button:hover{
 .share-button img {
     width: 100%;
 }
+
+.user-name {
+    font-weight: bold;
+    font-size: 3vh;
+    margin-bottom: 0;
+}
+
+.user-handle {
+    font-size: 2vh;
+    margin-top: 0;
+    color: #626262;
+}
+
+.poster-pfp {
+    border-radius: 50%;
+    width: 3vw;
+    aspect-ratio: 1/1;
+}
+
+.poster-names {
+    margin-top: 2vh;
+    margin-left: 1vw;
+}
