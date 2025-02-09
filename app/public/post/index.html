@@ -1,72 +1,121 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Home</title>
-        <link rel="stylesheet" href="index.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
-    <body>
-        <div class="tools">
-            <div class="sidebar">
-                <div class="icons">
-                    <img src="../assets/home-button.svg">
-                    <button class="icon-button">
-                        Home
-                    </button> 
-                </div>
-                <div class="icons">
-                    <img src="../assets/bell.svg">
-                    <button class="icon-button">
-                        Notifications
-                    </button> 
-                </div>
-                <div class="icons"> 
-                    <img src="../assets/bookmark.svg">
-                    <button class="icon-button">
-                        Suppported Businesses
-                    </button> 
-                </div>
-                <div class="icons">
-                    <img src="../assets/discover.svg">
-                    <button class="icon-button">
-                        Discover Businesses
-                    </button> 
-                </div>
-                
-            </div>
-
-            <div class="header">
-                <p>TinyImpactCo</p> 
-
-                <div class="search-container">
-                    <button class="search-button"><img src="../assets/search.svg"></button>
-                    <input type="search" placeholder="Search">
-                </div>
-                <div class="right-section">
-                    <button class="login-btn">Log In</button>
-                    <button class="signup-btn">Sign Up</button>
-                </div> 
-            </div>
+  <head>
+    <title>Home</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+    <div class="tools">
+      <div class="sidebar">
+        <div class="icons">
+          <img src="../assets/home-button.svg">
+          <button class="icon-button">
+            Home
+          </button> 
+        </div>
+        <div class="icons">
+          <img src="../assets/bell.svg">
+          <button class="icon-button">
+            Notifications
+          </button> 
+        </div>
+        <div class="icons"> 
+          <img src="../assets/bookmark.svg">
+          <button class="icon-button">
+            Suppported Businesses
+          </button> 
+        </div>
+        <div class="icons">
+          <img src="../assets/discover.svg">
+          <button class="icon-button">
+            Discover Businesses
+          </button> 
         </div>
 
-        <div class="feed">
-            <div class="post">
-                <div class="post-editor">
-                    <textarea placeholder="Type Text Here :D"></textarea>
-                    <div class="actions">
-                        <button><strong>B</strong></button>
-                        <button><em>I</em></button>
-                        <button><s>S</s></button>
-                        <button><u>U</u></button>
-                        <button>Post</button>
-                        <button>Preview</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
 
-        <button class="post-button">
-            +
-        </button>
-    </body>
+      <div class="header">
+        <p>TinyImpactCo</p> 
+
+        <div class="search-container">
+          <button class="search-button"><img src="../assets/search.svg"></button>
+          <input type="search" placeholder="Search">
+        </div>
+        <div class="right-section">
+          <button class="login-btn">Log In</button>
+          <button class="signup-btn">Sign Up</button>
+        </div> 
+      </div>
+    </div>
+
+    <div class="feed">
+      <div class="post">
+        <div class="post-editor">
+          <textarea placeholder="Type Text Here :D"></textarea>
+          <div class="actions">
+            <button><strong>B</strong></button>
+            <button><em>I</em></button>
+            <button><s>S</s></button>
+            <button><u>U</u></button>
+            <button>Post</button>
+            <button>Preview</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="post-button">
+      +
+    </button>
+
+    <script>
+      function get_cookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+      // Add event listener to the Post button
+      document.querySelector('.post-editor .actions button:nth-child(5)').addEventListener('click', async () => {
+        const textarea = document.querySelector('.post-editor textarea');
+        const contents = textarea.value;
+        const account_id = get_cookie("id")
+
+        if (!contents) {
+          alert('Please write something before posting!');
+          return;
+        }
+
+        if (!account_id) {
+          alert('Please log in to create a post');
+          window.location.href = '/signin';
+          return;
+        }
+
+        try {
+          const response = await fetch('/api/create-post', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              account_id: account_id,
+              contents: contents
+            }),
+          });
+
+          if (response.ok) {
+            textarea.value = ''; // Clear editor
+            location.ref = '/feed';
+          } else {
+            const error = await response.json();
+            alert(`Post failed: ${error.error}`);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Failed to create post - check console');
+        }
+      });
+    </script>
+  </body>
 </html>

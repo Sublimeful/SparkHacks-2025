@@ -18,14 +18,6 @@ async function init_db() {
     await client.query("BEGIN");
 
     await client.query(`
-      CREATE TABLE IF NOT EXISTS Attachment (
-        id SERIAL PRIMARY KEY,
-        file_path TEXT,
-        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-
-    await client.query(`
       CREATE TABLE IF NOT EXISTS Account (
         id SERIAL PRIMARY KEY,
         email TEXT UNIQUE NOT NULL,
@@ -47,7 +39,6 @@ async function init_db() {
         category TEXT NOT NULL,
         phone_number TEXT NOT NULL,
         description TEXT,
-        collage_attachments INTEGER[],
         FOREIGN KEY (account_id) REFERENCES Account(id) ON DELETE CASCADE
       )
     `);
@@ -66,7 +57,6 @@ async function init_db() {
         id SERIAL PRIMARY KEY,
         account_id INTEGER REFERENCES Account(id),
         contents TEXT NOT NULL,
-        attachments INTEGER[],
         created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
       );
     `);

@@ -14,7 +14,7 @@
       <div class="sidebar">
         <div class="icons">
           <img src="../assets/home-button.svg" />
-          <button class="icon-button">Home</button>
+          <button onclick="location.href = '/feed'" class="icon-button">Home</button>
         </div>
         <div class="icons">
           <img src="../assets/bell.svg" />
@@ -24,7 +24,7 @@
         </div>
         <div class="icons">
           <img src="../assets/bookmark.svg" />
-          <button class="icon-button">Suppported Businesses</button>
+          <button onclick="location.href = '/signin'" class="icon-button">Supported Businesses</button>
         </div>
         <div class="icons">
           <img src="../assets/discover.svg" />
@@ -86,11 +86,11 @@
       </div>
     </div>
 
-    <button class="post-button">+</button>
+    <button onclick="location.href='/post'" class="post-button">+</button>
     <script>
-      async function loadPosts() {
+      async function load_posts() {
         try {
-          const response = await fetch("/posts");
+          const response = await fetch("/api/posts");
           const posts = await response.json();
 
           const feed = document.querySelector(".feed");
@@ -108,15 +108,6 @@
             </div>
             <div class="post-content">
               <div class="text-content">${post.contents}</div>
-              ${post.attachments
-                .map(
-                  (attachment) => `
-                <div class="img-content">
-                  <img src="${attachment}">
-                </div>
-              `,
-                )
-                .join("")}
             </div>
             <div class="post-stats">
               <button class="like-button">
@@ -142,7 +133,7 @@
       }
 
       // Load posts when page loads
-      window.addEventListener("DOMContentLoaded", loadPosts);
+      window.addEventListener("DOMContentLoaded", load_posts);
     </script>
   </body>
 </html>

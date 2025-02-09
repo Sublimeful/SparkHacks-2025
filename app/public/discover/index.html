@@ -1,66 +1,111 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Discover</title>
-        <link rel="stylesheet" href="./index.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
-    <body>
-        <div class="tools">
-            <div class="sidebar">
-                <div class="icons">
-                    <img src="../assets/home-button.svg">
-                    <button class="icon-button">
-                        Home
-                    </button> 
-                </div>
-                <div class="icons">
-                    <img src="../assets/bell.svg">
-                    <button class="icon-button">
-                        Notifications
-                    </button> 
-                </div>
-                <div class="icons"> 
-                    <img src="../assets/bookmark.svg">
-                    <button class="icon-button">
-                        Suppported Businesses
-                    </button> 
-                </div>
-                <div class="icons">
-                    <img src="../assets/discover.svg">
-                    <button class="icon-button">
-                        Discover Businesses
-                    </button> 
-                </div>
-                
-            </div>
-
-            <div class="header">
-                <p>TinyImpactCo</p> 
-
-                <div class="search-container">
-                    <button class="search-button"><img src="../assets/search.svg"></button>
-                    <input type="search" placeholder="Search">
-                </div>
-                <div class="right-section">
-                    <button onclick="location.href='/signin'" class="login-btn">Log In</button>
-                    <button onclick="location.href='/signup'" class="signup-btn">Sign Up</button>
-                </div> 
-            </div>
+  <head>
+    <title>Discover</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+    <div class="tools">
+      <div class="sidebar">
+        <div class="icons">
+          <img src="../assets/home-button.svg">
+          <button onclick="location.href = '/feed'" class="icon-button">
+            Home
+          </button> 
         </div>
-        
-        <div class="feed">
-            <header class="page-header">Discover</header>
-            <div class="posts">
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-            </div>
+        <div class="icons">
+          <img src="../assets/bell.svg">
+          <button class="icon-button">
+            Notifications
+          </button> 
+        </div>
+        <div class="icons"> 
+          <img src="../assets/bookmark.svg">
+          <button class="icon-button">
+            Supported Businesses
+          </button> 
+        </div>
+        <div class="icons">
+          <img src="../assets/discover.svg">
+          <button onclick="location.href = '/discover'" class="icon-button">
+            Discover Businesses
+          </button> 
         </div>
 
-        <button class="post-button">
-            +
-        </button>
-    </body>
+      </div>
+
+      <div class="header">
+        <p>TinyImpactCo</p> 
+
+        <div class="search-container">
+          <button class="search-button"><img src="../assets/search.svg"></button>
+          <input type="search" placeholder="Search">
+        </div>
+        <div class="right-section">
+          <button onclick="location.href='/signin'" class="login-btn">Log In</button>
+          <button onclick="location.href='/signup'" class="signup-btn">Sign Up</button>
+        </div> 
+      </div>
+    </div>
+
+    <!-- Add this new page or modify existing structure -->
+    <div class="discover-page" style="display: none;">
+      <div class="business-feed">
+        <!-- Business cards will be inserted here -->
+      </div>
+    </div>
+    <button class="post-button">
+      +
+    </button>
+
+    <!-- Add this script -->
+    <script>
+      async function discover() {
+      // Load businesses when Discover button is clicked
+        try {
+          const response = await fetch('/api/businesses');
+          const businesses = await response.json();
+
+          const feed = document.querySelector('.business-feed');
+          feed.innerHTML = '';
+
+          businesses.forEach(business => {
+            const businessHtml = `
+          <div class="business-card">
+            <div class="business-header">
+              <h2>${business.business_name}</h2>
+              <p class="business-handle">@${business.business_handle}</p>
+              <div class="location">
+                <i class="fa-solid fa-location-dot"></i>
+                ${business.location}
+              </div>
+            </div>
+
+            <div class="business-details">
+              <p class="category">${business.category}</p>
+              <p class="phone">📞 ${business.phone_number}</p>
+              <div class="description">${business.description}</div>
+            </div>
+
+            <button class="support-button" data-business-id="${business.id}">
+              Support Business
+            </button>
+          </div>
+        `;
+
+            feed.insertAdjacentHTML('beforeend', businessHtml);
+          });
+
+          // Show discover page and hide other content
+          document.querySelector('.discover-page').style.display = 'block';
+
+        } catch (error) {
+          console.error('Error loading businesses:', error);
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", discover);
+    </script>
+  </body>
 </html>

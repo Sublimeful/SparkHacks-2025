@@ -24,20 +24,35 @@ router.get("/posts", async (req, res) => {
   try {
     client = await pool.connect();
     const result = await client.query(`
-      SELECT 
-        Post.id,
-        Post.contents,
-        Post.attachments,
-        Post.created_at,
-        Account.name AS user_name,
-        Account.username AS user_handle
-      FROM Post
-      INNER JOIN Account ON Post.account_id = Account.id
-      ORDER BY Post.created_at DESC;
+      SELECT *, Account.name as user_handle, Account.username as user_name FROM Post JOIN Account ON Account.id = Post.account_id;
     `);
     res.status(200).json(result.rows);
   } catch (error) {
     console.error("Error fetching posts:", error);
+    res.status(500).send("Server error");
+  } finally {
+    if (client) client.release();
+  }
+});
+
+// Add to your existing routes
+router.get("/businesses", async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    const result = await client.query(`
+      SELECT 
+        Business.*,
+        Account.name as business_name,
+        Account.username as business_handle,
+        Account.email as contact_email
+      FROM Business
+      JOIN Account ON Business.account_id = Account.id;
+    `);
+    
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Error fetching businesses:", error);
     res.status(500).send("Server error");
   } finally {
     if (client) client.release();
@@ -124,7 +139,6 @@ router.post("/account/business/sign-up", async (req, res) => {
     category,
     phone_number,
     description,
-    collage_attachments,
   } = req.body;
 
   let client;
@@ -150,8 +164,8 @@ router.post("/account/business/sign-up", async (req, res) => {
     // Note: The POINT type in PostgreSQL can be set with the POINT(x, y) function.
     await client.query(
       `
-      INSERT INTO Business (account_id, location, category, phone_number, description, collage_attachments)
-      VALUES ($1, $2, $3, $4, $5, $6);
+      INSERT INTO Business (account_id, location, category, phone_number, description)
+      VALUES ($1, $2, $3, $4, $5);
       `,
       [
         accountId,
@@ -159,7 +173,6 @@ router.post("/account/business/sign-up", async (req, res) => {
         category,
         phone_number,
         description,
-        collage_attachments, // If your array is already in the correct format
       ],
     );
 
@@ -208,7 +221,7 @@ router.post("/account/sign-in", async (req, res) => {
 });
 
 router.post("/create-post", async (req, res) => {
-  const { account_id, contents, attachments } = req.body; // Add account_id
+  const { account_id, contents } = req.body;
   let client;
 
   try {
@@ -216,15 +229,12 @@ router.post("/create-post", async (req, res) => {
 
     // Insert the new post
     await client.query(
-      `INSERT INTO Post (account_id, contents, attachments)
-     VALUES ($1, $2, $3)`,
-      [account_id, contents, attachments],
+      `INSERT INTO Post (account_id, contents)
+     VALUES ($1, $2)`,
+      [parseInt(account_id), contents],
     );
 
-    res.status(201).json({
-      message: "Post created successfully",
-      postId: result.rows[0].id,
-    });
+    res.status(200).send("Created!");
   } catch (error) {
     console.error("Error creating post:", error);
     res.status(500).send("Server error");
