@@ -18,6 +18,32 @@ const upload = multer({
   }),
 });
 
+// Add this to your existing routes
+router.get("/posts", async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    const result = await client.query(`
+      SELECT 
+        Post.id,
+        Post.contents,
+        Post.attachments,
+        Post.created_at,
+        Account.name AS user_name,
+        Account.username AS user_handle
+      FROM Post
+      INNER JOIN Account ON Post.account_id = Account.id
+      ORDER BY Post.created_at DESC;
+    `);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).send("Server error");
+  } finally {
+    if (client) client.release();
+  }
+});
+
 router.post("/attachment/upload", (req, res) => {
   upload.single("file")(req, res, async function (err) {
     // Error handling
@@ -182,20 +208,17 @@ router.post("/account/sign-in", async (req, res) => {
 });
 
 router.post("/create-post", async (req, res) => {
-  const { contents, attachments } = req.body;
+  const { account_id, contents, attachments } = req.body; // Add account_id
   let client;
 
   try {
     client = await pool.connect();
 
     // Insert the new post
-    const result = await client.query(
-      `
-      INSERT INTO Post (contents, attachments)
-      VALUES ($1, $2)
-      RETURNING id;
-      `,
-      [contents, attachments || []], // Default to empty array if attachments are not provided
+    await client.query(
+      `INSERT INTO Post (account_id, contents, attachments)
+     VALUES ($1, $2, $3)`,
+      [account_id, contents, attachments],
     );
 
     res.status(201).json({

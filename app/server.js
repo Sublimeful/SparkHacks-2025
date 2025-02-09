@@ -64,6 +64,7 @@ async function init_db() {
     await client.query(`
       CREATE TABLE IF NOT EXISTS Post (
         id SERIAL PRIMARY KEY,
+        account_id INTEGER REFERENCES Account(id),
         contents TEXT NOT NULL,
         attachments INTEGER[],
         created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
