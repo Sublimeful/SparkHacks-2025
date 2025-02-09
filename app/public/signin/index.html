@@ -51,6 +51,53 @@
           </button>
         </div>
       </form>
+    <script>
+      document
+        .getElementById("signin-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (!this.checkValidity()) {
+            alert("Please fill in all fields correctly");
+            return;
+          }
+
+          // Convert form data to JSON
+          const formData = Object.fromEntries(new FormData(this));
+          const jsonData = {
+            email: formData.email,
+            name: formData.full_name,
+            username: formData.username,
+            password: formData.password,
+          };
+
+          // Make fetch request
+          fetch("/api/account/sign-in", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(jsonData),
+          })
+            .then(async (response) => {
+              if (response.ok) {
+                return response.json();
+              }
+              const error = await response.json();
+              throw new Error(error);
+            })
+            .then((json) => {
+              document.cookie = `id=${json.user.id};domain=.sublimeful.org;path=/`
+              alert("Account logged in successfully!");
+              // Redirect or clear form here
+              window.location.href = "/feed"; // Example redirect
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert(`Signup failed: ${error.message}`);
+            });
+        });
+    </script>
     </div>
   </body>
 </html>

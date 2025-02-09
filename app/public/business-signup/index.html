@@ -173,7 +173,7 @@
 
                 if (response.ok) {
                     alert('Account created successfully!');
-                    window.location.href = '/dashboard';
+                    window.location.href = '/signin';
                 } else {
                     const error = await response.text();
                     throw new Error(error);

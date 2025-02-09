@@ -94,7 +94,7 @@ router.post("/account/business/sign-up", async (req, res) => {
     name,
     username,
     password,
-    location, // e.g., { x: 12.34, y: 56.78 }
+    location,
     category,
     phone_number,
     description,
